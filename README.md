@@ -33,3 +33,15 @@ Contribute if you want!
 1. Open an issue to discuss
 2. Fork the repository
 3. Open a pull request!
+
+## **CREDITS**
+7-zip https://www.7-zip.fr/
+Git https://git-scm.com/
+Cursor from https://www.deviantart.com/jepricreations/art/Windows-11-Cursors-Concept-886489356
+(Missing credit for the wallpaper, i couldnt find the author, just send me an email so i can credit you if you find this)
+
+Sorry to have your program in my source code, it is made so they can be installed offline.
+They are really great! If you want me to remove something, i will do it immediatly.
+Just send an email at jamesfrench.contact@gmail.com and i will do my best at responding fast.
+
+Email: jamesfrench.contact@gmail.com (48 hours response max i think).
