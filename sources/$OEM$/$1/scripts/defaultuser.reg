@@ -1,0 +1,96 @@
+Windows Registry Editor Version 5.00
+
+; Custom cursor
+[HKEY_USERS\DefaultUser\Control Panel\cursors]
+"AppStarting"="C:\\ProgramData\\WindowsPanther\\cursors\\appstarting.ani"
+"Arrow"="C:\\ProgramData\\WindowsPanther\\cursors\\arrow.cur"
+"Crosshair"="C:\\ProgramData\\WindowsPanther\\cursors\\crosshair.cur"
+"Hand"="C:\\ProgramData\\WindowsPanther\\cursors\\hand.cur"
+"Help"="C:\\ProgramData\\WindowsPanther\\cursors\\help.cur"
+"IBeam"="C:\\ProgramData\\WindowsPanther\\cursors\\ibeam.cur"
+"No"="C:\\ProgramData\\WindowsPanther\\cursors\\no.cur"
+"NWPen"="C:\\ProgramData\\WindowsPanther\\cursors\\nwpen.cur"
+"Person"="C:\\ProgramData\\WindowsPanther\\cursors\\person.cur"
+"Pin"="C:\\ProgramData\\WindowsPanther\\cursors\\pin.cur"
+"SizeAll"="C:\\ProgramData\\WindowsPanther\\cursors\\sizeall.cur"
+"SizeNESW"="C:\\ProgramData\\WindowsPanther\\cursors\\sizenesw.cur"
+"SizeNS"="C:\\ProgramData\\WindowsPanther\\cursors\\sizens.cur"
+"SizeNWSE"="C:\\ProgramData\\WindowsPanther\\cursors\\sizenwse.cur"
+"SizeWE"="C:\\ProgramData\\WindowsPanther\\cursors\\sizewe.cur"
+"UpArrow"="C:\\ProgramData\\WindowsPanther\\cursors\\uparrow.cur"
+"Wait"="C:\\ProgramData\\WindowsPanther\\cursors\\wait.ani"
+
+; Wallpaper
+[HKEY_USERS\DefaultUser\Control Panel\Desktop]
+"WallPaper"="C:\\ProgramData\\WindowsPanther\\background.jpeg"
+"WallpaperStyle"="10"
+"TileWallpaper"="0"
+
+; Wallpaper login screen
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\PersonalizationCSP]
+"LockScreenImage"="C:\\ProgramData\\WindowsPanther\\background.jpeg"
+"LockScreenImageStatus"=dword:00000001
+"LockScreenImagePath"="C:\\ProgramData\\WindowsPanther\\background.jpeg"
+"LockScreenImageUrl"="C:\\ProgramData\\WindowsPanther\\background.jpeg"
+
+; Lock the numpad
+[HKEY_USERS\DefaultUser\Control Panel\Keyboard]
+"InitialKeyboardIndicators"="2"
+
+; Disable some tracking
+[HKEY_USERS\DefaultUser\Software\Microsoft\Windows\CurrentVersion\ContentDeliveryManager]
+"ContentDeliveryAllowed"=dword:00000000
+"FeatureManagementEnabled"=dword:00000000
+"OEMPreInstalledAppsEnabled"=dword:00000000
+"PreInstalledAppsEnabled"=dword:00000000
+"PreInstalledAppsEverEnabled"=dword:00000000
+"SilentInstalledAppsEnabled"=dword:00000000
+"SoftLandingEnabled"=dword:00000000
+"SubscribedContentEnabled"=dword:00000000
+"SubscribedContent-310093Enabled"=dword:00000000
+"SubscribedContent-338387Enabled"=dword:00000000
+"SubscribedContent-338388Enabled"=dword:00000000
+"SubscribedContent-338389Enabled"=dword:00000000
+"SubscribedContent-338393Enabled"=dword:00000000
+"SubscribedContent-353698Enabled"=dword:00000000
+"SystemPaneSuggestionsEnabled"=dword:00000000
+
+; Remove copilot
+[HKEY_USERS\DefaultUser\Software\Policies\Microsoft\Windows\WindowsCopilot]
+"TurnOffWindowsCopilot"=dword:00000001
+
+; No mouse acceleration
+[HKEY_USERS\DefaultUser\Control Panel\Mouse]
+"MouseSpeed"="0"
+"MouseThreshold1"="0"
+"MouseThreshold2"="0"
+
+; Disable bing search result
+[HKEY_USERS\DefaultUser\Software\Policies\Microsoft\Windows\Explorer]
+"DisableSearchBoxSuggestions"=dword:00000001
+
+; Some explorer tweaks
+[HKEY_USERS\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced]
+"TaskbarAl"=dword:00000000
+"HideFileExt"=dword:00000000
+"Hidden"=dword:00000001
+"ShowTaskViewButton"=dword:00000000
+
+; Dark theme
+[HKEY_USERS\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Themes\Personalize]
+"SystemUsesLightTheme"=dword:00000000
+"AppsUseLightTheme"=dword:00000000
+"ColorPrevalence"=dword:00000000
+"EnableTransparency"=dword:00000001
+
+[HKEY_USERS\DefaultUser\Software\Microsoft\Windows\CurrentVersion\Explorer\Accent]
+"StartColorMenu"=dword:FFD47800
+"AccentColorMenu"=dword:FFD47800
+"AccentPalette"=hex:00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
+  d4,78,00,ff,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,
+  00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00
+
+; Others
+[HKEY_USERS\DefaultUser\Software\Microsoft\Windows\DWM]
+"ColorPrevalence"=dword:00000000
+"AccentColor"=dword:FFD47800 ; Part of the dark theme
