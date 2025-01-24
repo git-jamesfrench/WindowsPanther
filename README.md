@@ -23,10 +23,12 @@ A autounattend.xml made to debloat, optimize and make better Windows 11 (and 10)
 - [ ] Optimal registry configuration
 
 ## Installation
-To use Windows Panther, you need to install windows using a physical device (USB stick).
-- Create an installation on a USB stick using [Microsoft Tool](https://www.microsoft.com/fr-fr/software-download/windows11).
-- Drag & drop the `autounattend.xml` file and the `resources` folder inside your installation device.
+With an installation device (Flashdrive):
+- Create an installation on a Flashdrive using [Microsoft Tool](https://www.microsoft.com/fr-fr/software-download/windows11).
+- Drag & drop the `autounattend.xml` file and the `$OEM$` folder inside your installation device.
 - Start your pc.
+> [!NOTE]
+> You can put the files inside an .iso and it will work but it will not be explained.
 
 ## Contribute
 Contribute if you want!
