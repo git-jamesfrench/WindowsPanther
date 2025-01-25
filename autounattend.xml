@@ -32,13 +32,21 @@
 		<component name="Microsoft-Windows-Deployment" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS">
 			<RunSynchronous>
 				<RunSynchronousCommand wcm:action="add">
-					<Order>1</Order>
-					<Path>powershell.exe -NoProfile -Command "$xml = [xml]::new(); $xml.Load('C:\Windows\Panther\unattend.xml'); $sb = [scriptblock]::Create( $xml.unattend.Extensions.ExtractScript ); Invoke-Command -ScriptBlock $sb -ArgumentList $xml;"</Path>
-				</RunSynchronousCommand>
-				<RunSynchronousCommand wcm:action="add">
 					<Order>2</Order>
-					<Path>powershell.exe -NoProfile -Command "Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\Specialize.ps1' -Raw | Invoke-Expression;"</Path>
+					<Path>powershell.exe -NoProfile -Command "Get-Content -LiteralPath 'C:\ProgramData\WindowsPanther\scripts\specialize.ps1' -Raw | Invoke-Expression;"</Path>
 				</RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>3</Order>
+                    <Path>reg.exe load "HKU\DefaultUser" "C:\Users\Default\NTUSER.DAT"</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>4</Order>
+                    <Path>reg.exe import "C:\ProgramData\WindowsPanther\scripts\defaultuser.reg"</Path>
+                </RunSynchronousCommand>
+                <RunSynchronousCommand wcm:action="add">
+                    <Order>5</Order>
+                    <Path>reg.exe unload "HKU\DefaultUser"</Path>
+                </RunSynchronousCommand>
 			</RunSynchronous>
 		</component>
 	</settings>
@@ -75,74 +83,9 @@
 			<FirstLogonCommands>
 				<SynchronousCommand wcm:action="add">
 					<Order>1</Order>
-					<CommandLine>powershell.exe -NoProfile -Command "Get-Content -LiteralPath 'C:\Windows\Setup\Scripts\FirstLogon.ps1' -Raw | Invoke-Expression;"</CommandLine>
+					<CommandLine>powershell.exe -NoProfile -Command "Get-Content -LiteralPath 'C:\ProgramData\WindowsPanther\scripts\firstlogon.ps1' -Raw | Invoke-Expression;"</CommandLine>
 				</SynchronousCommand>
 			</FirstLogonCommands>
 		</component>
 	</settings>
-	<Extensions xmlns="https://schneegans.de/windows/unattend-generator/">
-		<ExtractScript>
-param(
-    [xml] $Document
-);
-
-foreach( $file in $Document.unattend.Extensions.File ) {
-    $path = [System.Environment]::ExpandEnvironmentVariables(
-        $file.GetAttribute( 'path' )
-    );
-    mkdir -Path( $path | Split-Path -Parent ) -ErrorAction 'SilentlyContinue';
-    $content = $file.InnerText.Trim();
-    if( $file.GetAttribute( 'transformation' ) -ieq 'Base64' ) {
-        [System.IO.File]::WriteAllBytes( $path, [System.Convert]::FromBase64String( $content ) );
-    } else {
-        $encoding = switch( [System.IO.Path]::GetExtension( $path ) ) {
-            { $_ -in '.ps1', '.xml' } { [System.Text.Encoding]::UTF8; }
-            { $_ -in '.reg', '.vbs', '.js' } { [System.Text.UnicodeEncoding]::new( $false, $true ); }
-            default { [System.Text.Encoding]::Default; }
-        };
-        [System.IO.File]::WriteAllBytes( $path, ( $encoding.GetPreamble() + $encoding.GetBytes( $content ) ) );
-    }
-}
-		</ExtractScript>
-		<File path="C:\Windows\Setup\Scripts\Specialize.ps1" transformation="Text">
-$scripts = @(
-	{
-		reg.exe add "HKLM\SYSTEM\Setup\MoSetup" /v AllowUpgradesWithUnsupportedTPMOrCPU /t REG_DWORD /d 1 /f;
-	};
-	{
-		reg.exe add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\OOBE" /v BypassNRO /t REG_DWORD /d 1 /f;
-	};
-	{
-		net.exe accounts /maxpwage:UNLIMITED;
-	};
-);
-
-&amp; {
-	[float] $complete = 0;
-	[float] $increment = 100 / $scripts.Count;
-	foreach( $script in $scripts ) {
-		Write-Progress -Activity 'Running scripts to customize your Windows installation. Do not close this window.' -PercentComplete $complete;
-		&amp; $script;
-		$complete += $increment;
-	}
-} *&gt;&amp;1 &gt;&gt; "C:\Windows\Setup\Scripts\Specialize.log";
-		</File>
-		<File path="C:\Windows\Setup\Scripts\FirstLogon.ps1" transformation="Text">
-$scripts = @(
-	{
-		Set-ItemProperty -LiteralPath 'Registry::HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -Name 'AutoLogonCount' -Type 'DWord' -Force -Value 0;
-	};
-);
-
-&amp; {
-	[float] $complete = 0;
-	[float] $increment = 100 / $scripts.Count;
-	foreach( $script in $scripts ) {
-		Write-Progress -Activity 'Running scripts to finalize your Windows installation. Do not close this window.' -PercentComplete $complete;
-		&amp; $script;
-		$complete += $increment;
-	}
-} *&gt;&amp;1 &gt;&gt; "C:\Windows\Setup\Scripts\FirstLogon.log";
-		</File>
-	</Extensions>
 </unattend>
