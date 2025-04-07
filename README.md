@@ -1,5 +1,11 @@
 <img src="https://github.com/JamesMinoucha/WindowsPanther/blob/main/assets/banner.png?raw=true"/>
 
+# 🚧 This tool will not longer be maintain 🚧
+
+Too much work, need to be updated a lot, hell to work on, no one will use it anyway 😅
+# 
+
+<br>
 A autounattend.xml made to debloat, optimize and make better Windows 11 (and 10). It is privacy oriented.
 
 ## Functionalities
